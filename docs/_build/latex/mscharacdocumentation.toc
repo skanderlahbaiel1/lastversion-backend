@@ -1,0 +1,33 @@
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{\numberline {1}MS\sphinxhyphen {}CHARAC\sphinxhyphen {}BACK}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}app package}{1}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Subpackages}{1}{subsection.1.1.1}%
+\contentsline {subsubsection}{app.migrations package}{1}{subsubsection*.3}%
+\contentsline {paragraph}{Submodules}{1}{paragraph*.4}%
+\contentsline {paragraph}{app.migrations.0001\_initial module}{1}{paragraph*.5}%
+\contentsline {paragraph}{Module contents}{4}{paragraph*.10}%
+\contentsline {subsection}{\numberline {1.1.2}Submodules}{4}{subsection.1.1.2}%
+\contentsline {subsection}{\numberline {1.1.3}app.admin module}{4}{subsection.1.1.3}%
+\contentsline {subsection}{\numberline {1.1.4}app.apps module}{5}{subsection.1.1.4}%
+\contentsline {subsection}{\numberline {1.1.5}app.manage module}{6}{subsection.1.1.5}%
+\contentsline {subsection}{\numberline {1.1.6}app.models module}{6}{subsection.1.1.6}%
+\contentsline {subsection}{\numberline {1.1.7}app.signals module}{22}{subsection.1.1.7}%
+\contentsline {subsection}{\numberline {1.1.8}app.tests module}{23}{subsection.1.1.8}%
+\contentsline {subsection}{\numberline {1.1.9}app.urls module}{23}{subsection.1.1.9}%
+\contentsline {subsection}{\numberline {1.1.10}app.views module}{25}{subsection.1.1.10}%
+\contentsline {subsection}{\numberline {1.1.11}Module contents}{48}{subsection.1.1.11}%
+\contentsline {section}{\numberline {1.2}generate\_documentation package}{48}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Submodules}{48}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}generate\_documentation.adjust\_paths\_rst module}{48}{subsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.2.3}generate\_documentation.modify\_conf module}{49}{subsection.1.2.3}%
+\contentsline {subsection}{\numberline {1.2.4}Module contents}{49}{subsection.1.2.4}%
+\contentsline {section}{\numberline {1.3}mapping package}{49}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Submodules}{49}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}mapping.asgi module}{49}{subsection.1.3.2}%
+\contentsline {subsection}{\numberline {1.3.3}mapping.settings module}{50}{subsection.1.3.3}%
+\contentsline {subsection}{\numberline {1.3.4}mapping.urls module}{50}{subsection.1.3.4}%
+\contentsline {subsection}{\numberline {1.3.5}mapping.wsgi module}{50}{subsection.1.3.5}%
+\contentsline {subsection}{\numberline {1.3.6}Module contents}{50}{subsection.1.3.6}%
+\contentsline {chapter}{\numberline {2}Indices and tables}{51}{chapter.2}%
+\contentsline {chapter}{Python Module Index}{53}{section*.212}%
+\contentsline {chapter}{Index}{55}{section*.213}%

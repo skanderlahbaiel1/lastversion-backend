@@ -1,0 +1,6 @@
+Metadata-Version: 2.1
+Name: khadija-documentation
+Version: 0.1.0
+Summary: Backend project
+Author-email: Khadija Mzabi <khadija-yasmine.mzabi@airbus.com>
+Requires-Python: >=3.7

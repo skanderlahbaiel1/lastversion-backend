@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "khadija-documentation"
+version = "0.1.0"
+description = "Backend project"
+authors = [{ name = "Khadija Mzabi", email = "khadija-yasmine.mzabi@airbus.com" }]
+requires-python = ">=3.7"
+dependencies = []
+
+[tool.setuptools]
+packages = ["app", "generate_documentation", "mapping"]
+
+[tool.pytest.ini_options]
+testpaths = ["MS-CHARAC-BACK"]

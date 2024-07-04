@@ -1,0 +1,3 @@
+app
+generate_documentation
+mapping

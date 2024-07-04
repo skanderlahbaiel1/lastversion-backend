@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>app.migrations package &#8212; MS CHARAC DOCUMENTATION 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
+    <script src="_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="generate_documentation package" href="generate_documentation.html" />
+    <link rel="prev" title="app package" href="app.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="app-migrations-package">
+<h1>app.migrations package<a class="headerlink" href="#app-migrations-package" title="Link to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-app.migrations.0001_initial">
+<span id="app-migrations-0001-initial-module"></span><h2>app.migrations.0001_initial module<a class="headerlink" href="#module-app.migrations.0001_initial" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="app.migrations.0001_initial.Migration">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">app.migrations.0001_initial.</span></span><span class="sig-name descname"><span class="pre">Migration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">app_label</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/app/migrations/0001_initial.html#Migration"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#app.migrations.0001_initial.Migration" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Migration</span></code></p>
+<p>This migration script initializes the database schema for the application. 
+It creates tables and relationships for various models including boards, 
+connectors, folders, interfaces, I/O types, links, resource names, contacts, 
+files, and associations.</p>
+<dl class="simple">
+<dt>Models and Fields:</dt><dd><ul class="simple">
+<li><p>boards: Represents a board with a primary key field <cite>board</cite>.</p></li>
+<li><p>connecteur: Represents a connector with fields <cite>dimension_row</cite> and <cite>dimension_column</cite>.</p></li>
+<li><p>connector: Represents a connector with fields <cite>name</cite>, <cite>row_dim</cite>, and <cite>column_dim</cite>.</p></li>
+<li><p>Folder: Represents a folder with a field <cite>folder_name</cite>.</p></li>
+<li><p>interfaces: Represents an interface with a primary key field <cite>interface</cite>.</p></li>
+<li><p>io_type: Represents an I/O type with fields <cite>io_type_name</cite> and <cite>io_type_symbol</cite>.</p></li>
+<li><p>link: Represents a link with fields <cite>first_interface</cite>, <cite>second_interface</cite>, and <cite>nom_link</cite>.</p></li>
+<li><p>resource_name: Represents a resource name with a primary key field <cite>name</cite>.</p></li>
+<li><p>contacts: Represents a contact with fields <cite>signal_name</cite>, <cite>num_row</cite>, <cite>num_column</cite>, and a foreign key to <cite>connecteur</cite>.</p></li>
+<li><p>File: Represents a file with fields <cite>file_name</cite>, <cite>data</cite>, and a foreign key to <cite>Folder</cite>.</p></li>
+<li><p>interfaceConnector: Represents a connection between an interface and a connector with foreign keys to <cite>interfaces</cite> and <cite>connector</cite>.</p></li>
+<li><p>connecteur: Adds a foreign key to <cite>interfaces</cite>.</p></li>
+<li><p>association: Represents an association with fields <cite>nombre_resource</cite> and foreign keys to <cite>interfaces</cite> and <cite>resource_name</cite>.</p></li>
+<li><p>IO_list: Represents an I/O list with fields <cite>resource_name</cite>, <cite>signal_name</cite>, <cite>nature</cite>, <cite>from_to</cite>, <cite>source_destination_board</cite>, <cite>description</cite>, <cite>connector</cite>, and a foreign key to <cite>association</cite>.</p></li>
+<li><p>resources_categories: Represents resource categories with fields <cite>category</cite>, <cite>count</cite>, and a many-to-many relationship to <cite>io_type</cite>.</p></li>
+<li><p>modele_io_mapping: Represents a mapping of I/O models with fields <cite>modele_name</cite>, and many-to-many relationships to <cite>interfaces</cite>, <cite>io_type</cite>, <cite>link</cite>, <cite>resource_name</cite>, and <cite>resources_categories</cite>.</p></li>
+<li><p>assigned_resources: Represents assigned resources with fields <cite>signal_name</cite>, <cite>board_internal_mapping</cite>, <cite>commentaire</cite>, <cite>io_index</cite>, and foreign keys to <cite>io_type</cite> and <cite>resources_categories</cite>.</p></li>
+<li><p>wirings: Represents wirings with fields <cite>first_signal</cite>, <cite>second_signal</cite>, and a foreign key to <cite>link</cite>.</p></li>
+</ul>
+</dd>
+<dt>Dependencies:</dt><dd><p>This migration has no dependencies.</p>
+</dd>
+<dt>Operations:</dt><dd><ul class="simple">
+<li><p>migrations.CreateModel: Creates each model and its fields as described above.</p></li>
+</ul>
+</dd>
+<dt>Commands to Generate and Apply Migration:</dt><dd><ol class="arabic simple">
+<li><p>Generate the migration script:
+<code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">python</span> <span class="pre">manage.py</span> <span class="pre">makemigrations</span> <span class="pre">app</span>
+<span class="pre">`</span></code></p></li>
+<li><p>Apply the migration to update the database schema:
+<code class="docutils literal notranslate"><span class="pre">`bash</span>
+<span class="pre">python</span> <span class="pre">manage.py</span> <span class="pre">migrate</span>
+<span class="pre">`</span></code></p></li>
+</ol>
+</dd>
+<dt>Possible Errors:</dt><dd><ul class="simple">
+<li><p>ImportError: If Django is not installed or not available on the PYTHONPATH.</p></li>
+<li><p>OperationalError: If there is an issue with the database connection or schema.</p></li>
+<li><p>FieldError: If there are issues with field definitions, such as invalid field types or relationships.</p></li>
+<li><p>ProgrammingError: If there are issues with the SQL commands generated by the migration.</p></li>
+<li><p>IntegrityError: If there are issues with data integrity, such as violating unique constraints.</p></li>
+</ul>
+</dd>
+<dt>Notes:</dt><dd><ul class="simple">
+<li><p>The <cite>on_delete</cite> parameter in foreign keys is used to handle deletion behavior, such as <cite>CASCADE</cite> or <cite>SET_NULL</cite>.</p></li>
+<li><p>The <cite>related_name</cite> parameter in foreign keys and many-to-many fields is used to specify the name of the reverse relation from the target model back to this one.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.migrations.0001_initial.Migration.dependencies">
+<span class="sig-name descname"><span class="pre">dependencies</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#app.migrations.0001_initial.Migration.dependencies" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.migrations.0001_initial.Migration.initial">
+<span class="sig-name descname"><span class="pre">initial</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#app.migrations.0001_initial.Migration.initial" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="app.migrations.0001_initial.Migration.operations">
+<span class="sig-name descname"><span class="pre">operations</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;CreateModel</span>&#160; <span class="pre">name='boards',</span> <span class="pre">fields=[('board',</span> <span class="pre">&lt;django.db.models.fields.TextField&gt;)]&gt;,</span> <span class="pre">&lt;CreateModel</span>&#160; <span class="pre">name='connecteur',</span> <span class="pre">fields=[('id',</span> <span class="pre">&lt;django.db.models.fields.BigAutoField&gt;),</span> <span class="pre">('dimension_row',</span> <span class="pre">&lt;django.db.models.fields.IntegerField&gt;),</span> <span class="pre">('dimension_column',</span> <span class="pre">&lt;django.db.models.fields.IntegerField&gt;)]&gt;,</span> <span class="pre">&lt;CreateModel</span>&#160; <span class="pre">name='connector',</span> <span class="pre">fields=[('id',</span> <span class="pre">&lt;django.db.models.fields.BigAutoField&gt;),</span> <span class="pre">('name',</span> <span class="pre">&lt;django.db.models.fields.CharField&gt;),</span> <span class="pre">('row_dim',</span> <span class="pre">&lt;django.db.models.fields.IntegerField&gt;),</span> <span class="pre">('column_dim',</span> <span class="pre">&lt;django.db.models.fields.IntegerField&gt;)]&gt;,</span> <span class="pre">&lt;CreateModel</span>&#160; <span class="pre">name='Folder',</span> <span class="pre">fields=[('id',</span> <span class="pre">&lt;django.db.models.fields.BigAutoField&gt;),</span> <span class="pre">('folder_name',</span> <span class="pre">&lt;django.db.models.fields.CharField&gt;)]&gt;,</span> <span class="pre">&lt;CreateModel</span>&#160; <span class="pre">name='interfaces',</span> <span class="pre">fields=[('interface',</span> <span class="pre">&lt;django.db.models.fields.TextField&gt;)]&gt;,</span> <span class="pre">&lt;CreateModel</span>&#160; <span class="pre">name='io_type',</span> <span class="pre">fields=[('io_type_name',</span> <span class="pre">&lt;django.db.models.fields.CharField&gt;),</span> <span class="pre">('io_type_symbol',</span> <span class="pre">&lt;django.db.models.fields.CharField&gt;)]&gt;,</span> <span class="pre">&lt;CreateModel</span>&#160; <span class="pre">name='link',</span> <span class="pre">fields=[('first_interface',</span> <span class="pre">&lt;django.db.models.fields.CharField&gt;),</span> <span class="pre">('second_interface',</span> <span class="pre">&lt;django.db.models.fields.CharField&gt;),</span> <span class="pre">('nom_link',</span> <span class="pre">&lt;django.db.models.fields.CharField&gt;)]&gt;,</span> <span class="pre">&lt;CreateModel</span>&#160; <span class="pre">name='resource_name',</span> <span class="pre">fields=[('name',</span> <span class="pre">&lt;django.db.models.fields.TextField&gt;)]&gt;,</span> <span class="pre">&lt;CreateModel</span>&#160; <span class="pre">name='contacts',</span> <span class="pre">fields=[('id',</span> <span class="pre">&lt;django.db.models.fields.BigAutoField&gt;),</span> <span class="pre">('signal_name',</span> <span class="pre">&lt;django.db.models.fields.CharField&gt;),</span> <span class="pre">('num_row',</span> <span class="pre">&lt;django.db.models.fields.IntegerField&gt;),</span> <span class="pre">('num_column',</span> <span class="pre">&lt;django.db.models.fields.IntegerField&gt;),</span> <span class="pre">('connecteur',</span> <span class="pre">&lt;django.db.models.fields.related.ForeignKey&gt;)]&gt;,</span> <span class="pre">&lt;CreateModel</span>&#160; <span class="pre">name='File',</span> <span class="pre">fields=[('id',</span> <span class="pre">&lt;django.db.models.fields.BigAutoField&gt;),</span> <span class="pre">('file_name',</span> <span class="pre">&lt;django.db.models.fields.CharField&gt;),</span> <span class="pre">('data',</span> <span class="pre">&lt;django.db.models.fields.BinaryField&gt;),</span> <span class="pre">('folder_name',</span> <span class="pre">&lt;django.db.models.fields.related.ForeignKey&gt;)]&gt;,</span> <span class="pre">&lt;CreateModel</span>&#160; <span class="pre">name='interfaceConnector',</span> <span class="pre">fields=[('id',</span> <span class="pre">&lt;django.db.models.fields.BigAutoField&gt;),</span> <span class="pre">('connecteur',</span> <span class="pre">&lt;django.db.models.fields.related.ForeignKey&gt;),</span> <span class="pre">('interface',</span> <span class="pre">&lt;django.db.models.fields.related.ForeignKey&gt;)]&gt;,</span> <span class="pre">&lt;AddField</span>&#160; <span class="pre">model_name='connecteur',</span> <span class="pre">name='interface',</span> <span class="pre">field=&lt;django.db.models.fields.related.ForeignKey&gt;&gt;,</span> <span class="pre">&lt;CreateModel</span>&#160; <span class="pre">name='association',</span> <span class="pre">fields=[('id',</span> <span class="pre">&lt;django.db.models.fields.BigAutoField&gt;),</span> <span class="pre">('nombre_resource',</span> <span class="pre">&lt;django.db.models.fields.IntegerField&gt;),</span> <span class="pre">('interface',</span> <span class="pre">&lt;django.db.models.fields.related.ForeignKey&gt;),</span> <span class="pre">('resource',</span> <span class="pre">&lt;django.db.models.fields.related.ForeignKey&gt;)]&gt;,</span> <span class="pre">&lt;CreateModel</span>&#160; <span class="pre">name='IO_list',</span> <span class="pre">fields=[('id',</span> <span class="pre">&lt;django.db.models.fields.BigAutoField&gt;),</span> <span class="pre">('resource_name',</span> <span class="pre">&lt;django.db.models.fields.IntegerField&gt;),</span> <span class="pre">('signal_name',</span> <span class="pre">&lt;django.db.models.fields.TextField&gt;),</span> <span class="pre">('nature',</span> <span class="pre">&lt;django.db.models.fields.CharField&gt;),</span> <span class="pre">('from_to',</span> <span class="pre">&lt;django.db.models.fields.CharField&gt;),</span> <span class="pre">('source_destination_board',</span> <span class="pre">&lt;django.db.models.fields.CharField&gt;),</span> <span class="pre">('description',</span> <span class="pre">&lt;django.db.models.fields.TextField&gt;),</span> <span class="pre">('connector',</span> <span class="pre">&lt;django.db.models.fields.CharField&gt;),</span> <span class="pre">('interface_resource',</span> <span class="pre">&lt;django.db.models.fields.related.ForeignKey&gt;)]&gt;,</span> <span class="pre">&lt;CreateModel</span>&#160; <span class="pre">name='resources_categories',</span> <span class="pre">fields=[('category',</span> <span class="pre">&lt;django.db.models.fields.CharField&gt;),</span> <span class="pre">('count',</span> <span class="pre">&lt;django.db.models.fields.IntegerField&gt;),</span> <span class="pre">('io_type',</span> <span class="pre">&lt;django.db.models.fields.related.ManyToManyField&gt;)]&gt;,</span> <span class="pre">&lt;CreateModel</span>&#160; <span class="pre">name='modele_io_mapping',</span> <span class="pre">fields=[('modele_name',</span> <span class="pre">&lt;django.db.models.fields.CharField&gt;),</span> <span class="pre">('interfaces',</span> <span class="pre">&lt;django.db.models.fields.related.ManyToManyField&gt;),</span> <span class="pre">('iotypes',</span> <span class="pre">&lt;django.db.models.fields.related.ManyToManyField&gt;),</span> <span class="pre">('links',</span> <span class="pre">&lt;django.db.models.fields.related.ManyToManyField&gt;),</span> <span class="pre">('resource_names',</span> <span class="pre">&lt;django.db.models.fields.related.ManyToManyField&gt;),</span> <span class="pre">('resources',</span> <span class="pre">&lt;django.db.models.fields.related.ManyToManyField&gt;)]&gt;,</span> <span class="pre">&lt;CreateModel</span>&#160; <span class="pre">name='assigned_resources',</span> <span class="pre">fields=[('id',</span> <span class="pre">&lt;django.db.models.fields.BigAutoField&gt;),</span> <span class="pre">('signal_name',</span> <span class="pre">&lt;django.db.models.fields.CharField&gt;),</span> <span class="pre">('board_internal_mapping',</span> <span class="pre">&lt;django.db.models.fields.CharField&gt;),</span> <span class="pre">('commentaire',</span> <span class="pre">&lt;django.db.models.fields.TextField&gt;),</span> <span class="pre">('io_index',</span> <span class="pre">&lt;django.db.models.fields.CharField&gt;),</span> <span class="pre">('io_type',</span> <span class="pre">&lt;django.db.models.fields.related.ForeignKey&gt;),</span> <span class="pre">('category',</span> <span class="pre">&lt;django.db.models.fields.related.ForeignKey&gt;)]&gt;,</span> <span class="pre">&lt;CreateModel</span>&#160; <span class="pre">name='wirings',</span> <span class="pre">fields=[('id',</span> <span class="pre">&lt;django.db.models.fields.BigAutoField&gt;),</span> <span class="pre">('first_signal',</span> <span class="pre">&lt;django.db.models.fields.TextField&gt;),</span> <span class="pre">('second_signal',</span> <span class="pre">&lt;django.db.models.fields.TextField&gt;),</span> <span class="pre">('link_type',</span> <span class="pre">&lt;django.db.models.fields.related.ForeignKey&gt;)]&gt;]</span></em><a class="headerlink" href="#app.migrations.0001_initial.Migration.operations" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-app.migrations">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-app.migrations" title="Link to this heading">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">MS CHARAC DOCUMENTATION</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">MS-CHARAC-BACK</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="app.html">app package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generate_documentation.html">generate_documentation package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapping.html">mapping package</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">MS-CHARAC-BACK</a><ul>
+  <li><a href="app.html">app package</a><ul>
+      <li>Previous: <a href="app.html" title="previous chapter">app package</a></li>
+      <li>Next: <a href="generate_documentation.html" title="next chapter">generate_documentation package</a></li>
+  </ul></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Khadija Yasmine Mzabi.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+      |
+      <a href="_sources/app.migrations.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

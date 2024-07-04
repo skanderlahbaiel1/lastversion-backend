@@ -1,0 +1,142 @@
+tâches à réaliser : -afficher les dossiers et les ajouter dans la base de données : finished
+                    -afficher les fichiers et les ajouter dans la base de données les associer au dossier 
+                    à lequel on les a ajouté dans la partie fronted : finished
+                    -définir une format d'inputs : presque fini.
+                    -ajouter la base de données et tester un injecteur sur les ressources catégories : finished.
+                    -ajouter les autres tables à la base de données et commencer 
+                    à tester sur les vrais données et puis créer un filtre pour les tables 
+                    (finished)
+                    - compléter le code de remplissage de la table contacts (finished)
+                    - créer un outil pour correspondre les signaux à partir des contacts (finished)
+                    - faire un petit test mapping des signaux (enregistrement wiring fait)
+                    (reste le test mapping demain) (finished)
+
+                    -développer de plus en plus le fronnted 
+                      - aggrid (fait en test chez moi çà marche mais il vaut mieux de le tester le lundi pour tout
+                      les tables)
+                      - filtrage dans le aggrid pas encore testé
+                      - résulat mapping dans l'animation
+                        (animation faite reste à retirer les informations depuis le mapping resources)
+                        (exemple simple puis développé après)
+                      - insertion des données à la main intéractive possible déjà testé sur un exemple
+                        chez moi mais il fallait le tester sur nos tables
+                      - ajouter un menu pour différencier entre les tables (resources, assignation io liste, wirings)
+                      - journalisation pas encore conçue
+                      - téléchargement des résultats 
+                  backend:
+                    - à concevoir : tester des triggers, des senders 
+                    - tenir en considération l'idée de monsieur Anthony : associer des connecteurs commerciaux 
+                    à des interfaces c'est de mieux que de les construire au début, les voir comme des matrices (je commence dans cette idée)
+                    - bloquer la modification pour certains tables (on va penser comment procéder après)
+                  note: aggrid
+                    -multi selection à envisager et d'autres choses à penser  
+
+
+                  link aggrid documentation : https://www.ag-grid.com/  
+
+                  tâche de 11/09/2023 : 
+                  - tester des triggers (fini)
+                  - relation manytomany fait entre io_types et resources_categories (fait et fini)
+                  - triggers pour contacts et signals (pour signals est fini pour contacts on pense aux connecteurs (fini le connecteur))
+                  - créer une fonction create_wiring (pour aujourd'hui)
+                  - spécifier le nom des rows et columns d'une manière intelligente (pour demain)
+                  - menu assignation, io liste, wiring, resources (pas encore fait ajourné 15/09/2023)
+                  - aggrid (pas encore fait ajourné 15/09/2023)
+
+
+
+filtre fait il reste les formulaires et çà y est 
+
+
+
+
+
+
+file_input = File.objects.get(file_name='input.txt')
+    file_interfaces = File.objects.get(file_name='interfaces.txt')
+    file_contacts = File.objects.get(file_name='contacts.txt')
+    io_type.objects.all().delete()
+    resources_categories.objects.all().delete()
+    interfaces.objects.all().delete()
+    wirings.objects.all().delete()
+    resultat = process_mapping(file_input,file_interfaces,file_contacts,'VERSA_IN_0_1_P_0','DSI_P+_RELAYS_RDBCK84','DSI_P+_RELAYS_RDBCK_0','ANI_AC')
+    print(resultat)
+
+
+
+
+function populateGrid(workbook) {
+  // our data is in the first sheet
+  var firstSheetName = workbook.SheetNames[0];
+  var worksheet = workbook.Sheets[firstSheetName];
+
+  // we expect the following columns to be present
+  var columns = {
+    A: 'io type',
+    B: 'symbol',
+  };
+
+  var rowData = [];
+
+  // start at the 2nd row - the first row are the headers
+  var rowIndex = 2;
+
+  // iterate over the worksheet pulling out the columns we're expecting
+  while (worksheet['A' + rowIndex]) {
+    var row = {};
+    Object.keys(columns).forEach(function (column) {
+      row[columns[column]] = worksheet[column + rowIndex].w;
+    });
+
+    rowData.push(row);
+
+    rowIndex++;
+  }
+
+  // finally, set the imported rowData into the grid
+  gridOptions.api.setRowData(rowData);
+}
+
+
+
+# gestion du formulaire de l'insertion du data dans resources_categories
+# cette fonction récupére la catégorie, io_types, le nombre de ressources dans cette catégorie
+# depuis le formulaire et 
+def insert(request):
+    insert_existant_category = ""
+    category = request.POST.get('category')
+    category_cell = None
+    io_types_cell = None
+    count_cell = None
+    resource_existed, resource_created = resources_categories.objects.get_or_create(category=category)
+    if not(resource_created):
+        insert_existant_category = "Il existe déjà une catégorie de ressource sous le nom : " + category
+    else: 
+        category_cell = category
+        io_types = request.POST.get('io_types')
+        io_types_cell = io_types
+        count = int(request.POST.get('count'))
+        count_cell = str(count)
+        resource_existed.io_types = io_types
+        resource_existed.count = count
+        resource_existed.save()
+        #nous sommes sûr que le nombre de ressources est un entier et que çà existe
+        #on itère sur count pour créer une numérotation des signaux qui appartiennent à une catégorie
+        #du coup si comme si on prépare la table des assigned_ressources (préparé automatiquement
+        # par un trigger dans le fichier signals.py)
+
+        insert_existant_category = "La catégorie " + category + " d'io types [" + io_types + "] et de nombre de ressources: " + str(count) + " est ajouté"
+
+   
+    return JsonResponse({"message":insert_existant_category,"category":category_cell,"io_types":io_types_cell,"count":count_cell})
+
+
+
+on veut maintenant linker les wiring
+
+
+
+
+    maintenant on passe côté association (fait)
+    on passe côté io assignation on le finit vite fait dans deux jours essaie de ne pas faire du retard
+    

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>app.apps &#8212; MS CHARAC DOCUMENTATION 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=12dfc556" />
+    <script src="../../_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for app.apps</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">django.apps</span> <span class="kn">import</span> <span class="n">AppConfig</span>
+
+
+<div class="viewcode-block" id="AppConfig">
+<a class="viewcode-back" href="../../app.html#app.apps.AppConfig">[docs]</a>
+<span class="k">class</span> <span class="nc">AppConfig</span><span class="p">(</span><span class="n">AppConfig</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    This class represents the configuration for the Django application named &#39;app&#39;.</span>
+<span class="sd">    It is responsible for setting the application&#39;s default auto field type and </span>
+<span class="sd">    importing signal handlers when the application is ready.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        default_auto_field (str): Specifies the type of auto-created primary key field to use by default.</span>
+<span class="sd">        name (str): The name of the application.</span>
+
+<span class="sd">    Methods:</span>
+<span class="sd">        ready(): Imports the application&#39;s signal handlers.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">default_auto_field</span> <span class="o">=</span> <span class="s1">&#39;django.db.models.BigAutoField&#39;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;app&#39;</span>
+
+<div class="viewcode-block" id="AppConfig.ready">
+<a class="viewcode-back" href="../../app.html#app.apps.AppConfig.ready">[docs]</a>
+    <span class="k">def</span> <span class="nf">ready</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This method is called when the application is ready. It imports the</span>
+<span class="sd">        signal handlers defined in the &#39;app.signals&#39; module.</span>
+
+<span class="sd">        Usage:</span>
+<span class="sd">            This method is automatically called by Django when the application is</span>
+<span class="sd">            initialized. No direct call to this method is necessary.</span>
+
+<span class="sd">        Notes:</span>
+<span class="sd">            Ensure that the &#39;app.signals&#39; module exists and contains the necessary</span>
+<span class="sd">            signal handlers. Improper configuration or missing signal handlers can</span>
+<span class="sd">            lead to application errors.</span>
+
+<span class="sd">        Examples:</span>
+<span class="sd">            To define a signal handler, create a &#39;signals.py&#39; file in your &#39;app&#39;</span>
+<span class="sd">            directory and define your signals as follows:</span>
+
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                from django.db.models.signals import post_save</span>
+<span class="sd">                from django.dispatch import receiver</span>
+<span class="sd">                from .models import MyModel</span>
+
+<span class="sd">                @receiver(post_save, sender=MyModel)</span>
+<span class="sd">                def my_signal_handler(sender, instance, created, **kwargs):</span>
+<span class="sd">                    if created:</span>
+<span class="sd">                        # Handle the signal</span>
+<span class="sd">                        pass</span>
+
+<span class="sd">            This signal handler will be imported and connected when the application</span>
+<span class="sd">            is ready.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">import</span> <span class="nn">app.signals</span></div>
+</div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">MS CHARAC DOCUMENTATION</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">MS-CHARAC-BACK</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Khadija Yasmine Mzabi.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
